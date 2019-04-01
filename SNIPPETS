@@ -1,0 +1,12 @@
+#
+# Сопоставление пользователей
+#
+
+vals = [value for value, in session2.query(tbl10.res_users.login).all()]
+
+records = session1.query(tbl8.res_users)\
+    .filter(~tbl8.res_users.login.in_(vals))\
+    .all()
+
+for rec in records:
+    print(rec.login)
